@@ -6,15 +6,19 @@ class Sql extends PDO {
 
 	public function __construct(){
 
-		$this->conn = new PDO("oci:dbname=localhost/xe", "dbphp7", "teste123");
+//		$this->conn = new PDO("oci:dbname=localhost/xe", "dbphp7", "teste123"); //conexão oracle
+		$this->conn = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "");  //conexão php7
+//        $this->conn = new PDO("sqlsrv:Database=dbphp7;server=GIVALDO-NB\SQLEXPRESS;ConnectionPooling=0", "root", "root");  //conexão sqlserver
+
+
 
 	}
 
-	private function setParams($statement, $parameters = array()) {
+	private function setParams($statement, $parameters = array()){
 
 		foreach ($parameters as $key => $value) {
 
-			$this->setParams($key, $value);
+			$this->setParam($statement, $key, $value);
 			
 		}
 
